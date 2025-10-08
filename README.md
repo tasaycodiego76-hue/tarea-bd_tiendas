@@ -3,16 +3,25 @@
 fit clone https://...
 2. Restaurar la BD
 ```sql
-CREATE DATABASE electroperu;
-use electroperu;
+CREATE DATABASE bd_tiendas;
+USE bd_tiendas;
 
-CREATE TABLE productos
-(
-   id INT AUTO_INCREMENT PRIMARY KEY,
-   descripcion  VARCHAR(50) NOT NULL,
-   garantia     TINYINT     NOT NULL,
-   precio       DECIMAL(7,2) NOT NULL
-)ENGINE = INNODB;
+CREATE TABLE tiendas (
+    id     INT PRIMARY KEY AUTO_INCREMENT,
+    tienda VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE clientes (
+    id        INT PRIMARY KEY AUTO_INCREMENT,
+    apellidos VARCHAR(100) NOT NULL,
+    nombres   VARCHAR(100) NOT NULL,
+    dni       VARCHAR(8) NOT NULL,
+    telefono  VARCHAR(15),
+    direccion VARCHAR(200),
+    tienda_id INT,
+    FOREIGN KEY (tienda_id) REFERENCES tiendas(id)
+);
+
 ```
 
 3.Abrir el proyecto _electroperu_ en VSCode
